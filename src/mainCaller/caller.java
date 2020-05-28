@@ -1,7 +1,6 @@
 package mainCaller;
 
 import java.util.Random;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import TestCases.TestCase1;
@@ -23,7 +22,8 @@ public class caller {
 		execute.testExe(driver, session_id);			
 		Thread.sleep(3000);
 		Testcase2 execute1 = new Testcase2();
-		execute1.testExe(driver, session_id);	
+		execute1.testExe(driver, session_id);
+		driver.quit();
 		
 	}
 }
