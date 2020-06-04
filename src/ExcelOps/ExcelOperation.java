@@ -1,15 +1,14 @@
 package ExcelOps;
 
+import mainCaller.Commons;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
-public class ExcelOperation {
-
-    public String currentdir = System.getProperty("user.dir");
-    public String ExcelPath = currentdir + File.separator + "ExcelData" + File.separator + "ExcelInput.xlsx";
-
+public class ExcelOperation implements Commons {
 
     public String ExcelRead(String Sheetname, int row, int col) {
         String result = null;
@@ -24,7 +23,6 @@ public class ExcelOperation {
         } catch (Exception e) {
             System.out.println(e);
         }
-
         return result;
     }
 
@@ -50,8 +48,8 @@ public class ExcelOperation {
             Row rw = sh.createRow(row);
             Cell ce = rw.createCell(col);
             ce.setCellValue(Data);
-            FileOutputStream Filewrite = new FileOutputStream(ExcelPath);
-            wb.write(Filewrite);
+            FileOutputStream FileWrite = new FileOutputStream(ExcelPath);
+            wb.write(FileWrite);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -64,12 +62,16 @@ public class ExcelOperation {
             Row rw = sh.createRow(row);
             Cell ce = rw.createCell(col);
             ce.setCellValue(Data);
-            FileOutputStream Filewrite = new FileOutputStream(ExcelPath);
-            wb.write(Filewrite);
+            FileOutputStream FileWrite = new FileOutputStream(ExcelPath);
+            wb.write(FileWrite);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    public int RowNum(String Sheetname) throws IOException, InvalidFormatException {
+        Workbook wb = WorkbookFactory.create(new FileInputStream(ExcelPath));
 
+        return wb.getSheet(Sheetname).getLastRowNum();
+    }
 }

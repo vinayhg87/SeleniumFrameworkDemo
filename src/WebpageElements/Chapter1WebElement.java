@@ -21,7 +21,7 @@ public class Chapter1WebElement {
     public WebElement dropDown;
     @FindBy(id = "divontheleft")
     public WebElement plainText;
-    WebDriver driver = null;
+    WebDriver driver;
 
     public Chapter1WebElement(WebDriver driver) {
         this.driver = driver;

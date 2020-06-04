@@ -7,13 +7,14 @@ import java.util.concurrent.TimeUnit;
 
 public class TestCase1 {
 
-    public void testExe(WebDriver driver, int session_id) {
+    public TestCase1(WebDriver driver, int session_id) {
         try {
             Chapter1WebElement webele = new Chapter1WebElement(driver);
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             webele.Chapter1Link.click();
             webele.checkbox.click();
             webele.radioButton.click();
+            Thread.sleep(2000);
             webele.inputBox.sendKeys("Test Message1");
             Thread.sleep(3000);
             String plaintext = webele.plainText.getText();
