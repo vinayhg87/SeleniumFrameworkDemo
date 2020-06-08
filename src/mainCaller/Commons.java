@@ -1,5 +1,7 @@
 package mainCaller;
 
+import ExcelOps.ExcelOperation;
+
 import java.io.File;
 
 public interface Commons {
@@ -12,5 +14,7 @@ public interface Commons {
     String chromedriver_MAC = currentdir + File.separator + "libs" + File.separator + "chromedriver";
     String geckoDriver_WIN = currentdir + File.separator + "libs" + File.separator + "geckodriver.exe";
     String chromedriver_WIN = currentdir + File.separator + "libs" + File.separator + "chromedriver.exe";
+    ExcelOperation excel = new ExcelOperation();
+
 
 }

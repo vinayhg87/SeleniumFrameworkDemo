@@ -17,22 +17,41 @@ public class caller implements Commons {
                      ClassNotFoundException, IllegalAccessException, InstantiationException,
                                                 NoSuchMethodException, InvocationTargetException {
 
+        WebDriver driver = null;
         if (System.getProperty("os.name").equals("Mac OS X"))
         {
             System.out.println("Loading drivers for MAC OS.");
-            System.setProperty("webdriver.gecko.driver", geckoDriver_MAC);
-            System.setProperty("webdriver.chrome.driver", chromedriver_MAC);
+
+            if(excel.ExcelRead("Browser", 1, 0).equalsIgnoreCase("firefox"))
+            {
+                System.out.println("Loading Gecko Driver");
+                System.setProperty("webdriver.gecko.driver", geckoDriver_MAC);
+                driver = new FirefoxDriver();
+            }
+            else if (excel.ExcelRead("Browser", 1, 0).equalsIgnoreCase("chrome"))
+            {
+                System.out.println("Loading Chrome Driver");
+                System.setProperty("webdriver.chrome.driver", chromedriver_MAC);
+                driver = new ChromeDriver();
+            }
         }
         else if (System.getProperty("os.name").equals("Windows 10"))
         {
             System.out.println("Loading drivers for Windows 10.");
-            System.setProperty("webdriver.gecko.driver", geckoDriver_WIN);
-            System.setProperty("webdriver.chrome.driver", chromedriver_WIN);
+            if(excel.ExcelRead("Browser", 1, 0).equalsIgnoreCase("firefox"))
+            {
+                System.out.println("Loading Gecko Driver");
+                System.setProperty("webdriver.gecko.driver", geckoDriver_WIN);
+                driver = new FirefoxDriver();
+            }
+            else if (excel.ExcelRead("Browser", 1, 0).equalsIgnoreCase("chrome"))
+            {
+                System.out.println("Loading Chrome Driver");
+                System.setProperty("webdriver.chrome.driver", chromedriver_WIN);
+                driver = new ChromeDriver();
+            }
         }
-        //System.setProperty("webdriver.chrome.driver", chromedriver);
 
-        //WebDriver driver = new FirefoxDriver();
-        WebDriver driver = new ChromeDriver();
         //driver.get("https://learn.letskodeit.com/p/practice");
         driver.get("http://book.theautomatedtester.co.uk/");
         driver.manage().window().maximize();
