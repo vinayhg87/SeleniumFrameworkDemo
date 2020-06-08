@@ -27,7 +27,7 @@ public class caller implements Commons {
         {
             System.out.println("Loading drivers for Windows 10.");
             System.setProperty("webdriver.gecko.driver", geckoDriver_WIN);
-            System.setProperty("webdriver.gecko.driver", chromedriver_WIN);
+            System.setProperty("webdriver.chrome.driver", chromedriver_WIN);
         }
         //System.setProperty("webdriver.chrome.driver", chromedriver);
 
