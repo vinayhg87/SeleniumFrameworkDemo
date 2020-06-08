@@ -4,6 +4,8 @@ import ExcelOps.ExcelOperation;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -15,8 +17,20 @@ public class caller implements Commons {
                      ClassNotFoundException, IllegalAccessException, InstantiationException,
                                                 NoSuchMethodException, InvocationTargetException {
 
-        //System.setProperty("webdriver.gecko.driver", geckoDriver);
-        System.setProperty("webdriver.chrome.driver", chromedriver);
+        if (System.getProperty("os.name").equals("Mac OS X"))
+        {
+            System.out.println("Loading drivers for MAC OS.");
+            System.setProperty("webdriver.gecko.driver", geckoDriver_MAC);
+            System.setProperty("webdriver.chrome.driver", chromedriver_MAC);
+        }
+        else if (System.getProperty("os.name").equals("Windows 10"))
+        {
+            System.out.println("Loading drivers for Windows 10.");
+            System.setProperty("webdriver.gecko.driver", geckoDriver_WIN);
+            System.setProperty("webdriver.gecko.driver", chromedriver_WIN);
+        }
+        //System.setProperty("webdriver.chrome.driver", chromedriver);
+
         //WebDriver driver = new FirefoxDriver();
         WebDriver driver = new ChromeDriver();
         //driver.get("https://learn.letskodeit.com/p/practice");
@@ -34,5 +48,6 @@ public class caller implements Commons {
             constructor.newInstance(driver, session_id);
         }
         driver.quit();
+
     }
 }
