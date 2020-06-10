@@ -8,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Date;
 import java.util.Random;
 
 public class caller implements Commons {
@@ -63,8 +62,8 @@ public class caller implements Commons {
         /* This is to execute Chapter1 Test Cases */
         for (int i=1; i<=rowNum; i++) {
             String ClassName =  "TestCases." + excel.ExcelRead("Chapter1", i, 2);
-            Constructor constructor = Class.forName(ClassName).getConstructor(WebDriver.class, int.class);
-            constructor.newInstance(driver, session_id);
+            Constructor constructor = Class.forName(ClassName).getConstructor(WebDriver.class, int.class, int.class);
+            constructor.newInstance(driver, session_id, i);
         }
         driver.quit();
 

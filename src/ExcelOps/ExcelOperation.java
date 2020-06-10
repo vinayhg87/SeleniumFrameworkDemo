@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 public class ExcelOperation implements Commons {
 
@@ -45,7 +46,7 @@ public class ExcelOperation implements Commons {
         try {
             Workbook wb = WorkbookFactory.create(new FileInputStream(ExcelPath));
             Sheet sh = wb.getSheet(Sheetname);
-            Row rw = sh.createRow(row);
+            Row rw = sh.getRow(row);
             Cell ce = rw.createCell(col);
             ce.setCellValue(Data);
             FileOutputStream FileWrite = new FileOutputStream(ExcelPath);
@@ -59,7 +60,7 @@ public class ExcelOperation implements Commons {
         try {
             Workbook wb = WorkbookFactory.create(new FileInputStream(ExcelPath));
             Sheet sh = wb.getSheet(Sheetname);
-            Row rw = sh.createRow(row);
+            Row rw = sh.getRow(row);
             Cell ce = rw.createCell(col);
             ce.setCellValue(Data);
             FileOutputStream FileWrite = new FileOutputStream(ExcelPath);
@@ -68,6 +69,22 @@ public class ExcelOperation implements Commons {
             System.out.println(e);
         }
     }
+
+    public void ExcelWrite(String Sheetname, int row, int col, Timestamp Data) {
+        try {
+            Workbook wb = WorkbookFactory.create(new FileInputStream(ExcelPath));
+            Sheet sh = wb.getSheet(Sheetname);
+            Row rw = sh.getRow(row);
+            Cell ce = rw.createCell(col);
+            ce.setCellValue(Data);
+            FileOutputStream FileWrite = new FileOutputStream(ExcelPath);
+            wb.write(FileWrite);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+
 
     public int RowNum(String Sheetname) throws IOException, InvalidFormatException {
         Workbook wb = WorkbookFactory.create(new FileInputStream(ExcelPath));
